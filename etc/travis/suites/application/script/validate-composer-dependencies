@@ -3,4 +3,8 @@
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../../../../bash/common.lib.sh"
 
 print_header "Validating (Composer require checker)" "Sylius"
+run_command "(cat composer.json | jq '.[\"autoload-dev\"][\"psr-4\"] |= . + {\"Sylius\\\\Behat\\\\\": \"src/Sylius/Behat/\"}' | jq 'del(.autoload[\"psr-4\"][\"Sylius\\\\Behat\\\\\"])') > _composer.json"
+run_command "mv _composer.json composer.json"
+run_command "cat composer.json"
+run_command "composer dump-autoload"
 run_command "(composer global require maglnet/composer-require-checker && $HOME/.composer/vendor/bin/composer-require-checker --config-file=composer-require-checker.json)"
