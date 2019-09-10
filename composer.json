@@ -195,7 +195,9 @@
             "Sylius\\Component\\": "src/Sylius/Component/"
         },
         "exclude-from-classmap": [
-            "src/Sylius/*/*/Tests/"
+            "src/Sylius/*/*/Tests/",
+            "src/Sylius/*/*/spec/",
+            "src/Sylius/*/*/test/"
         ]
     },
     "autoload-dev": {
