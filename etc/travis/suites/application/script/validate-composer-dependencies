@@ -3,4 +3,5 @@
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../../../../bash/common.lib.sh"
 
 print_header "Validating (Composer require checker)" "Sylius"
-run_command "(composer global require maglnet/composer-require-checker && $HOME/.composer/vendor/bin/composer-require-checker --config-file=composer-require-checker.json)"
+run_command "curl https://github.com/maglnet/ComposerRequireChecker/releases/download/2.0.0/composer-require-checker.phar > $SYLIUS_CACHE_DIR/composer-require-checker.phar"
+run_command "php $SYLIUS_CACHE_DIR/composer-require-checker.phar --config-file=$(pwd)/composer-require-checker.json"
